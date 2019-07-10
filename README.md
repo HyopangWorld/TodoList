@@ -16,5 +16,5 @@
   5. 할 일을 목록에서 삭제 할 수 있다.
 
 #### Style Guide
- * Swift Code Convention
- * Swift Dev Version : 5.0.1
+    Swift Code Convention
+    Swift Dev Version : 5.0.1
