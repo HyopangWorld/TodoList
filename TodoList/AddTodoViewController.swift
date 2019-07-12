@@ -11,47 +11,34 @@ import UIKit
 class AddTodoViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var contentTextField: UITextView!
+    @IBOutlet weak var contentTextView: UITextView!
     
     override func viewDidLoad() {
+        contentTextView.layer.borderWidth = 1.0
+        contentTextView.layer.borderColor = UIColor.lightGray.cgColor
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-    // MARK: - Feature
-    // TODO: Todo 저장
+    // MARK: - 기능
+    // MARK: Todo 저장
     @IBAction func touchUpDoneButton(_ sender: UIBarButtonItem) {
-        guard titleTextField.text != nil else {
-            titleTextField.text = "텍스트를 입력하세요."
+        guard let title = titleTextField.text else {
             return
         }
         
-        guard contentTextField.text != nil else {
-            contentTextField.text = "텍스트를 입력하세요."
-            return
+        var content = ""
+        if contentTextView.text != nil {
+            content = contentTextView.text
         }
         
-        // data 저장
+        list.append(TodoList(title: title, content: content, isComplete: false))
         
-        //화면 종료
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
+    // MARK: cancle
     @IBAction func touchUpCancelButton(_ sender: UIBarButtonItem) {
-        titleTextField.text = ""
-        contentTextField.text = ""
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

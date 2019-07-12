@@ -14,6 +14,7 @@
 		24BF03DC22D57C7000E054F6 /* TodoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF03DB22D57C7000E054F6 /* TodoListTableViewController.swift */; };
 		24BF03DE22D57E2200E054F6 /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF03DD22D57E2200E054F6 /* AddTodoViewController.swift */; };
 		24BF03E022D5D5E300E054F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF03DF22D5D5E300E054F6 /* ViewController.swift */; };
+		24C1FAF422D814DD0054AF3D /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1FAF322D814DD0054AF3D /* TodoList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		24BF03DB22D57C7000E054F6 /* TodoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewController.swift; sourceTree = "<group>"; };
 		24BF03DD22D57E2200E054F6 /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
 		24BF03DF22D5D5E300E054F6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../MettingRooms/MettingRooms/ViewController.swift; sourceTree = "<group>"; };
+		24C1FAF322D814DD0054AF3D /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				24BF03D022D56F0500E054F6 /* Assets.xcassets */,
 				24BF03D222D56F0500E054F6 /* LaunchScreen.storyboard */,
 				24BF03D522D56F0500E054F6 /* Info.plist */,
+				24C1FAF322D814DD0054AF3D /* TodoList.swift */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C1FAF422D814DD0054AF3D /* TodoList.swift in Sources */,
 				24BF03DE22D57E2200E054F6 /* AddTodoViewController.swift in Sources */,
 				24BF03CA22D56F0400E054F6 /* AppDelegate.swift in Sources */,
 				24BF03E022D5D5E300E054F6 /* ViewController.swift in Sources */,

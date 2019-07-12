@@ -8,78 +8,69 @@
 
 import UIKit
 
-class TodoListTableViewController: UITableViewController {
+var list = [TodoList]()
+class TodoListTableViewController: UITableViewController{
+    
+    @IBOutlet var todoListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        todoListTableView.delegate = self
+        todoListTableView.dataSource = self
     }
 
-    // MARK: - Table view data source
-
+    override func viewDidAppear(_ animated: Bool) {
+        todoListTableView.reloadData()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
-    // MARK: - Feature
-    // TODO: Todo 조회 - List
-    
+    // MARK: - 기능
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return list.count
     }
     
-    /*
+    // MARK: TodoList 조회
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath)
+        
+        cell.textLabel?.text = list[indexPath.row].title
+        cell.detailTextLabel?.text = list[indexPath.row].content
+        if list[indexPath.row].isComplete {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        list.remove(at: indexPath.row)
+        todoListTableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    // MARK: TodoList 편집
+    @IBAction func editButtonAction(_ sender: Any) {
+        //리스트 비어있을 때 return
+        guard !list.isEmpty else {
+            return
+        }
+        
+        todoListTableView.setEditing(true, animated: true) //editmode animaition
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action:  #selector(doneButtonTap))
+        doneButton.style = .plain
+        doneButton.target = self
+        self.navigationItem.leftBarButtonItem = doneButton
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    @objc func doneButtonTap(){
+        self.navigationItem.leftBarButtonItem = editButtonItem
+        todoListTableView.setEditing(false, animated: true)
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
