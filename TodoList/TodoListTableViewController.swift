@@ -14,6 +14,7 @@ class TodoListTableViewController: UITableViewController{
     @IBOutlet var todoListTableView: UITableView!
     
     override func viewDidLoad() {
+        loadAllData()
         super.viewDidLoad()
         
         todoListTableView.delegate = self
@@ -21,6 +22,7 @@ class TodoListTableViewController: UITableViewController{
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        saveAllData()
         todoListTableView.reloadData()
     }
     
@@ -28,9 +30,42 @@ class TodoListTableViewController: UITableViewController{
         return 1
     }
 
-    // MARK: - 기능
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
+    }
+    
+    // MARK: - 기능
+    // MARK: TodoList UserData 저장
+    func saveAllData(){
+        let data = list.map{
+            [
+                "title" : $0.title,
+                "content" : $0.content,
+                "isComplete" : $0.isComplete
+            ]
+        }
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(data, forKey: "items")
+        userDefaults.synchronize()
+    }
+    
+    // MARK: TodoList UserData 조회
+    func loadAllData(){
+        let userDefaults = UserDefaults.standard
+        guard let data = userDefaults.object(forKey: "items") as? [[String: AnyObject]] else {
+            return
+        }
+        
+        print(data.description)
+        
+        list = data.map {
+            let title = $0["title"] as? String
+            let content = $0["content"] as? String
+            let isComplete = $0["isComplete"] as? Bool
+            
+            return TodoList(title: title ?? "", content: content!, isComplete: isComplete ?? false)
+        }
     }
     
     // MARK: TodoList 조회
@@ -46,11 +81,6 @@ class TodoListTableViewController: UITableViewController{
         }
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        list.remove(at: indexPath.row)
-        todoListTableView.reloadData()
     }
     
     // MARK: TodoList 편집
@@ -71,6 +101,12 @@ class TodoListTableViewController: UITableViewController{
     @objc func doneButtonTap(){
         self.navigationItem.leftBarButtonItem = editButtonItem
         todoListTableView.setEditing(false, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        list.remove(at: indexPath.row)
+        saveAllData()
+        todoListTableView.reloadData()
     }
     
 }
