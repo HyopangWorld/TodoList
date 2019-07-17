@@ -12,6 +12,7 @@ class AddTodoViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
+    var alert: UIAlertController!
     
     override func viewDidLoad() {
         contentTextView.layer.borderWidth = 1.0
@@ -23,7 +24,17 @@ class AddTodoViewController: UIViewController {
     // MARK: - 기능
     // MARK: Todo 저장
     @IBAction func touchUpDoneButton(_ sender: UIBarButtonItem) {
-        guard let title = titleTextField.text else {
+        if alert == nil{
+            alert = UIAlertController(title: "알림", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(alertAction)
+        }
+        
+        let title: String
+        if titleTextField.text != nil && titleTextField.text != ""{
+            title = titleTextField.text!
+        } else {
+            present(alert, animated: true, completion: nil)
             return
         }
         
