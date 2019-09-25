@@ -34,10 +34,10 @@ class TodoListViewController: UITableViewController {
             break
             
         case "DetailTodo":
-            break
+            let detailVC = segue.destination as! TodoDetailViewController
+            detailVC.delegate = self
             
-        default:
-            break
+        default: break
         }
     }
     
@@ -76,4 +76,10 @@ extension TodoListViewController {
         return cell
     }
     
+}
+
+extension TodoListViewController: TodoListDelegate {
+    func updateTodoList(content: String) {
+        viewModel?.reloadTodo()
+    }
 }

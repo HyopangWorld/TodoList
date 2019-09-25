@@ -10,6 +10,7 @@ import UIKit
 
 class TodoDetailViewController: UIViewController {
     @IBOutlet weak var contentTextField: UITextView!
+    weak var delegate: TodoListDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +18,15 @@ class TodoDetailViewController: UIViewController {
     }
     
     @IBAction func doneButtonDidTap(_ sender: Any) {
+        guard let delegate = delegate else {
+            return
+        }
+        guard let content = contentTextField.text else {
+            return
+        }
         
+        delegate.updateTodoList(content: content)
+        
+        self.dismiss(animated: true, completion: nil)
     }
-    
 }
