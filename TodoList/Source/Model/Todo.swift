@@ -8,13 +8,11 @@
 
 import Foundation
 
-struct TodoList{
-    var title: String = ""
-    var content: String = ""
-    var isComplete: Bool = false
+struct Todo{
+    var content: String?
+    var isComplete: Bool?
     
-    init(title: String, content: String, isComplete: Bool = false){
-        self.title = title
+    init(content: String, isComplete: Bool = false){
         self.content = content
         self.isComplete = isComplete
     }
