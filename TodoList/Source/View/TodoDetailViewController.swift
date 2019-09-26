@@ -25,8 +25,8 @@ class TodoDetailViewController: UIViewController {
             return
         }
         
-        delegate.updateTodoList(content: content)
+        delegate.setTodoList(content: content)
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }

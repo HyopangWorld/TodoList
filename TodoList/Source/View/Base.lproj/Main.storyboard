@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="F77-70-Q3C">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TodoListItem" id="F77-70-Q3C">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F77-70-Q3C" id="2wU-g6-o93">
@@ -33,7 +33,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5u7-tA-ney" userLabel="title">
-                                            <rect key="frame" x="63" y="11" width="33.5" height="21"/>
+                                            <rect key="frame" x="63" y="11" width="293" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -44,6 +44,7 @@
                                         <constraint firstItem="5u7-tA-ney" firstAttribute="leading" secondItem="2wU-g6-o93" secondAttribute="leadingMargin" constant="43" id="Mab-sj-twz"/>
                                         <constraint firstItem="6JZ-PZ-pbm" firstAttribute="top" secondItem="2wU-g6-o93" secondAttribute="top" constant="11" id="R8n-nB-wpm"/>
                                         <constraint firstItem="6JZ-PZ-pbm" firstAttribute="leading" secondItem="2wU-g6-o93" secondAttribute="leading" constant="20" symbolic="YES" id="e2o-MY-2zg"/>
+                                        <constraint firstAttribute="trailing" secondItem="5u7-tA-ney" secondAttribute="trailing" constant="20" symbolic="YES" id="mFC-IL-wlj"/>
                                         <constraint firstAttribute="bottom" secondItem="6JZ-PZ-pbm" secondAttribute="bottom" constant="11.5" id="muh-Op-0f8"/>
                                         <constraint firstItem="5u7-tA-ney" firstAttribute="bottom" secondItem="6JZ-PZ-pbm" secondAttribute="bottom" id="ndC-7j-7fv"/>
                                     </constraints>
@@ -114,7 +115,6 @@
         <!--Navigation Controller-->
         <scene sceneID="0wa-84-Gse">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tWR-Wr-9q8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Xfp-SW-2Cd" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q4q-wa-9CC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -124,6 +124,7 @@
                         <segue destination="IIf-gx-q5D" kind="relationship" relationship="rootViewController" id="pgd-Lb-FpP"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tWR-Wr-9q8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-7" y="163"/>
         </scene>

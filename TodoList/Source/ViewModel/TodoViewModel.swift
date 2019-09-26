@@ -14,6 +14,7 @@ protocol TodoViewModelProtocol: class {
     
     // 명령
     func reloadTodo()
+    func setTodo(content: String)
 }
 
 class TodoViewModel: TodoViewModelProtocol {
@@ -27,6 +28,12 @@ class TodoViewModel: TodoViewModelProtocol {
     
     init() {
         self.todoList = []
+    }
+    
+    func setTodo(content: String){
+        DataService.setTodo(content: content)
+        
+        self.reloadTodo()
     }
     
     func reloadTodo(){

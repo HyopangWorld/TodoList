@@ -23,22 +23,14 @@ class TodoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel = TodoViewModel()
     }
     
     
     // MARK: - Move View Controller
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-            
-        case "AddTodo":
-            break
-            
-        case "DetailTodo":
-            let detailVC = segue.destination as! TodoDetailViewController
-            detailVC.delegate = self
-            
-        default: break
-        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let detailVC = segue.destination as! TodoDetailViewController
+        detailVC.delegate = self
     }
     
     
@@ -79,7 +71,7 @@ extension TodoListViewController {
 }
 
 extension TodoListViewController: TodoListDelegate {
-    func updateTodoList(content: String) {
-        viewModel?.reloadTodo()
+    func setTodoList(content: String) {
+        viewModel?.setTodo(content: content)
     }
 }

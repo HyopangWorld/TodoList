@@ -9,5 +9,5 @@
 import Foundation
 
 protocol TodoListDelegate: AnyObject{
-    func updateTodoList(content: String)
+    func setTodoList(content: String)
 }

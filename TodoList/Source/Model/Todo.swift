@@ -9,11 +9,7 @@
 import Foundation
 
 struct Todo{
+    var id: String?
     var content: String?
     var isComplete: Bool?
-    
-    init(content: String, isComplete: Bool = false){
-        self.content = content
-        self.isComplete = isComplete
-    }
 }
