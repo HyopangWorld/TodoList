@@ -22,11 +22,14 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUI()
     }
     
     func setUI(){
         viewModel = TodoViewModel()
+        viewModel?.reloadTodo()
+        
         tableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: "TodoItem")
     }
     

@@ -12,6 +12,14 @@ class DataService {
     private static var todoList = Dictionary<String, Dictionary<String, Any>>()
     private static var id = 0
     
+    static func getTodoList() -> Dictionary<String, Dictionary<String, Any>> {
+        return todoList
+    }
+    
+    static func setTodoList(_ todoList: Dictionary<String, Dictionary<String, Any>>){
+        self.todoList = todoList
+    }
+    
     // MARK: - todo List 불러오기
     static func getTodoList(key: String) -> Array<Todo>? {
         var todoArray = Array<Todo>()
