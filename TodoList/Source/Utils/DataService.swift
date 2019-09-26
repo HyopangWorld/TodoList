@@ -9,8 +9,11 @@
 import Foundation
 
 class DataService {
+    // DataBase
     private static var todoList = Dictionary<String, Dictionary<String, Any>>()
     
+    
+    // MARK: - todo List 불러오기
     static func getTodoList(key: String) -> Array<Todo>? {
         var todoArray = Array<Todo>()
         
@@ -30,20 +33,30 @@ class DataService {
         return todoArray
     }
     
+    
+    // MARK: - todo 저장
     static func setTodo(content: String) {
-        var todo = Todo()
-        todo.id = "\(todoList.count+1)"
-        todo.content = content
-        todo.isComplete = false
-        
         let todoDictionary = [
-            "content" : todo.content!,
-            "isComplete" : todo.isComplete!
+            "content" : content,
+            "isComplete" : false
+            ] as [String : Any]
+        
+        todoList.updateValue(todoDictionary, forKey: "\(todoList.count+1)")
+    }
+    
+    
+    // MARK: - todo 업데이트
+    static func updateTodo(todo: Todo){
+        let todoDictionary = [
+            "content" : todo.content ?? "",
+            "isComplete" : todo.isComplete ?? false
             ] as [String : Any]
         
         todoList.updateValue(todoDictionary, forKey: todo.id!)
     }
     
+    
+    // MARK: - todo 삭제
     static func delTodo(id: String){
         todoList.removeValue(forKey: id)
     }

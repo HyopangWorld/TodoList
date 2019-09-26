@@ -11,22 +11,31 @@ import UIKit
 class TodoDetailViewController: UIViewController {
     @IBOutlet weak var contentTextField: UITextView!
     weak var delegate: TodoListDelegate?
+    var todo: Todo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUI()
+    }
+    
+    func setUI(){
+        guard let todo = todo else{
+            return
+        }
+        
+        contentTextField.text = todo.content
     }
     
     @IBAction func doneButtonDidTap(_ sender: Any) {
-        guard let delegate = delegate else {
-            return
-        }
-        guard let content = contentTextField.text else {
+        guard let delegate = delegate, var todo = todo, let content = contentTextField.text else {
             return
         }
         
-        delegate.setTodoList(content: content)
+        todo.content = content
+        delegate.updateTodoList(todo: todo)
         
         self.navigationController?.popViewController(animated: true)
     }
+    
 }

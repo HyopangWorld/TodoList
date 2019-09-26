@@ -29,8 +29,22 @@ class TodoListViewController: UITableViewController {
     
     // MARK: - Move View Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        let detailVC = segue.destination as! TodoDetailViewController
-        detailVC.delegate = self
+        switch segue.identifier {
+        case "detail":
+            guard let row = (sender as? Int) else {
+                return
+            }
+            
+            let detailVC = segue.destination as! TodoDetailViewController
+            detailVC.todo = viewModel?.todoList[row]
+            detailVC.delegate = self
+            
+        case "add":
+            let addVC = segue.destination as! TodoAddViewController
+            addVC.delegate = self
+            
+        default: break
+        }
     }
     
     
@@ -68,10 +82,19 @@ extension TodoListViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "detail", sender: indexPath.row)
+    }
+    
 }
 
 extension TodoListViewController: TodoListDelegate {
     func setTodoList(content: String) {
         viewModel?.setTodo(content: content)
+    }
+    
+    func updateTodoList(todo: Todo) {
+        viewModel?.updateTodo(todo: todo)
     }
 }

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TodoListItem" id="F77-70-Q3C">
+                            <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TodoListItem" id="F77-70-Q3C">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F77-70-Q3C" id="2wU-g6-o93">
@@ -64,14 +64,65 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="LwB-GU-GEo">
                             <connections>
-                                <segue destination="ZiU-gw-38S" kind="push" identifier="AddTodo" id="Etn-em-pzV"/>
+                                <segue destination="VIR-Bn-gMh" kind="showDetail" identifier="add" id="lha-ff-hgE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="ZiU-gw-38S" kind="push" identifier="detail" id="DTe-jf-2pk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUO-1o-BDp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="911.59420289855075" y="162.72321428571428"/>
+        </scene>
+        <!--Todo Add View Controller-->
+        <scene sceneID="SOz-4q-RfJ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EHH-sF-qQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="VIR-Bn-gMh" customClass="TodoAddViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jWw-XQ-7M8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Vu-7C-yYW">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="SLx-tL-Aah">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uO2-GU-q3f">
+                                            <connections>
+                                                <action selector="cancleButtonDidTap:" destination="VIR-Bn-gMh" id="XXv-qp-LKP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="b8D-Ke-grJ">
+                                            <connections>
+                                                <action selector="doneButtonDidTap:" destination="VIR-Bn-gMh" id="UdD-Se-kkY"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1mA-qs-Nyp">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.92150276900000005" green="0.92163532969999995" blue="0.92147380109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97619122266769409" green="0.97633117437362671" blue="0.97616058588027954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="4Q1-Vy-o5N"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KPg-FL-gfj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="NVa-jz-Led"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentTextField" destination="1mA-qs-Nyp" id="nOe-if-S3W"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1829" y="442"/>
         </scene>
         <!--Todo Detail View Controller-->
         <scene sceneID="4ic-54-ztP">
@@ -100,17 +151,17 @@
                     <navigationItem key="navigationItem" id="7ZD-KE-mgF">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="6WO-CZ-jjc">
                             <connections>
-                                <action selector="doneButtonDidTap:" destination="ZiU-gw-38S" id="Ntj-30-ro5"/>
+                                <action selector="doneButtonDidTap:" destination="ZiU-gw-38S" id="LD1-gA-6xO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="contentTextField" destination="wWe-Ol-udb" id="3EG-wu-Q28"/>
+                        <outlet property="contentTextField" destination="wWe-Ol-udb" id="p0o-ez-xhF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UeG-Dh-8gP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797" y="163"/>
+            <point key="canvasLocation" x="1829" y="-309"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0wa-84-Gse">

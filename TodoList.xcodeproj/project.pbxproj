@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240931D9233C75CC002C1D4F /* TodoAddControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240931D8233C75CC002C1D4F /* TodoAddControllerView.swift */; };
 		242CE475233AF91100A8FDBB /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE474233AF91100A8FDBB /* TodoListViewController.swift */; };
 		242CE479233B088500A8FDBB /* TodoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE478233B088500A8FDBB /* TodoDetailViewController.swift */; };
 		242CE47D233B300E00A8FDBB /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE47C233B300E00A8FDBB /* TodoViewModel.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		240931D8233C75CC002C1D4F /* TodoAddControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAddControllerView.swift; sourceTree = "<group>"; };
 		242CE474233AF91100A8FDBB /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		242CE478233B088500A8FDBB /* TodoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewController.swift; sourceTree = "<group>"; };
 		242CE47C233B300E00A8FDBB /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				242CE474233AF91100A8FDBB /* TodoListViewController.swift */,
 				242CE478233B088500A8FDBB /* TodoDetailViewController.swift */,
+				240931D8233C75CC002C1D4F /* TodoAddControllerView.swift */,
 				24BF03CD22D56F0400E054F6 /* Main.storyboard */,
 			);
 			path = View;
@@ -202,6 +205,7 @@
 				242CE482233B328600A8FDBB /* DataService.swift in Sources */,
 				242CE479233B088500A8FDBB /* TodoDetailViewController.swift in Sources */,
 				242CE486233B548100A8FDBB /* TodoListDelegate.swift in Sources */,
+				240931D9233C75CC002C1D4F /* TodoAddControllerView.swift in Sources */,
 				24C1FAF422D814DD0054AF3D /* Todo.swift in Sources */,
 				242CE47D233B300E00A8FDBB /* TodoViewModel.swift in Sources */,
 				24BF03CA22D56F0400E054F6 /* AppDelegate.swift in Sources */,
