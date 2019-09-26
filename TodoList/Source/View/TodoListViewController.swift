@@ -22,10 +22,13 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel = TodoViewModel()
+        setUI()
     }
     
+    func setUI(){
+        viewModel = TodoViewModel()
+        tableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: "TodoItem")
+    }
     
     // MARK: - Move View Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -47,14 +50,6 @@ class TodoListViewController: UITableViewController {
         }
     }
     
-    @IBAction func checkMarkButtonDidTap(_ sender: UIButton) {
-        guard let todoList = viewModel?.todoList else {
-            return
-        }
-        
-        sender.isSelected = !sender.isSelected
-        viewModel?.updateTodo(todo: todoList[sender.tag])
-    }
 }
 
 
@@ -65,25 +60,18 @@ extension TodoListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListItem", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItem", for: indexPath) as! TodoTableViewCell
         
         guard let todoList = viewModel?.todoList else {
             return cell
         }
         let row = indexPath.row
         
-        if let title = cell.viewWithTag(1) {
-            if  title is UILabel {
-                (title as! UILabel).text = todoList[row].content ?? ""
-            }
-        }
+        cell.delegate = self
         
-        if let checkMark = cell.viewWithTag(2) {
-            if  checkMark is UIButton {
-                checkMark.tag = row
-                (checkMark as! UIButton).isSelected = todoList[row].isComplete ?? false
-            }
-        }
+        cell.titleTextField.text = todoList[row].content ?? ""
+        cell.checkMark.tag = row
+        cell.checkMark.isSelected = todoList[row].isComplete ?? false
         
         return cell
     }
@@ -101,6 +89,14 @@ extension TodoListViewController {
         }
         
         return [delete]
+    }
+    
+    
+}
+
+extension TodoListViewController: TodoCellDelgate {
+    func checkMarkDidTap(tag: Int, isComplete: Bool) {
+        viewModel?.completeTodo(row: tag, isComplete: isComplete)
     }
 }
 

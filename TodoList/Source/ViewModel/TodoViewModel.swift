@@ -19,6 +19,7 @@ protocol TodoViewModelProtocol: class {
     func setTodo(content: String)
     func updateTodo(todo: Todo)
     func delTodo(row: Int)
+    func completeTodo(row: Int, isComplete: Bool)
 }
 
 class TodoViewModel: TodoViewModelProtocol {
@@ -45,16 +46,23 @@ class TodoViewModel: TodoViewModelProtocol {
     
     func setTodo(content: String){
         DataService.addTodo(content: content)
-        self.reloadTodo()
+        reloadTodo()
     }
     
     func updateTodo(todo: Todo){
         DataService.updateTodo(todo: todo)
-        self.reloadTodo()
+        reloadTodo()
     }
     
     func delTodo(row: Int){
         DataService.delTodo(id: todoList[row].id!)
-        self.reloadTodo()
+        reloadTodo()
+    }
+    
+    func completeTodo(row: Int, isComplete: Bool) {
+        var todo = todoList[row]
+        todo.isComplete = isComplete
+        
+        updateTodo(todo: todo)
     }
 }

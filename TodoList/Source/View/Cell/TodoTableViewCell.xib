@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="KGk-i7-Jjw" customClass="TodoTableViewCell" customModule="TodoList" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkF-YU-dQl" userLabel="checkMark" customClass="TodoItem">
+                        <rect key="frame" x="20" y="-2.5" width="30" height="48.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <state key="normal" title="☹︎">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </state>
+                        <state key="selected" title="☻"/>
+                        <connections>
+                            <action selector="checkMarkDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ape-Hu-mcz"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxv-v2-L3D" userLabel="title">
+                        <rect key="frame" x="65" y="11.5" width="201" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fxv-v2-L3D" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0LS-2G-0gc"/>
+                    <constraint firstItem="dkF-YU-dQl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="A6J-Zy-dxA"/>
+                    <constraint firstItem="fxv-v2-L3D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="65" id="ko2-6O-9EG"/>
+                    <constraint firstItem="dkF-YU-dQl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nLe-eH-beF"/>
+                    <constraint firstAttribute="trailing" secondItem="fxv-v2-L3D" secondAttribute="trailing" constant="20" symbolic="YES" id="qR5-qq-bH8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="checkMark" destination="dkF-YU-dQl" id="YIl-t7-8it"/>
+                <outlet property="titleTextField" destination="fxv-v2-L3D" id="9IF-EO-NIN"/>
+            </connections>
+            <point key="canvasLocation" x="34.782608695652179" y="34.821428571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

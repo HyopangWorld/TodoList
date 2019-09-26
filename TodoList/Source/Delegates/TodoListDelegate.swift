@@ -12,3 +12,8 @@ protocol TodoListDelegate: AnyObject{
     func setTodoList(content: String)
     func updateTodoList(todo: Todo)
 }
+
+
+protocol TodoCellDelgate: AnyObject{
+    func checkMarkDidTap(tag: Int, isComplete: Bool)
+}
