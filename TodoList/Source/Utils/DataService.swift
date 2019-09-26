@@ -24,6 +24,9 @@ class DataService {
             todoArray.append(todo)
         }
         
+        // 배열 정렬
+        todoArray = todoArray.sorted(by: { ($0.id! as NSString).integerValue < ($1.id! as NSString).integerValue })
+        
         return todoArray
     }
     
