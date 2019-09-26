@@ -26,27 +26,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✔️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JZ-PZ-pbm" userLabel="checkMark">
-                                            <rect key="frame" x="20" y="11" width="23" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5u7-tA-ney" userLabel="title">
-                                            <rect key="frame" x="63" y="11" width="293" height="21"/>
+                                            <rect key="frame" x="66" y="11" width="290" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNk-MZ-iEJ" userLabel="checkMark">
+                                            <rect key="frame" x="20" y="11" width="30" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <state key="normal" title="☹︎">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <state key="selected" title="☻"/>
+                                            <connections>
+                                                <action selector="checkMarkButtonDidTap:" destination="IIf-gx-q5D" eventType="touchUpInside" id="eh0-rP-Q9G"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="5u7-tA-ney" firstAttribute="top" secondItem="6JZ-PZ-pbm" secondAttribute="top" id="1iq-5g-3Xl"/>
-                                        <constraint firstItem="5u7-tA-ney" firstAttribute="leading" secondItem="2wU-g6-o93" secondAttribute="leadingMargin" constant="43" id="Mab-sj-twz"/>
-                                        <constraint firstItem="6JZ-PZ-pbm" firstAttribute="top" secondItem="2wU-g6-o93" secondAttribute="top" constant="11" id="R8n-nB-wpm"/>
-                                        <constraint firstItem="6JZ-PZ-pbm" firstAttribute="leading" secondItem="2wU-g6-o93" secondAttribute="leading" constant="20" symbolic="YES" id="e2o-MY-2zg"/>
+                                        <constraint firstItem="MNk-MZ-iEJ" firstAttribute="top" secondItem="2wU-g6-o93" secondAttribute="topMargin" id="HHE-J9-HCn"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5u7-tA-ney" secondAttribute="bottom" constant="1" id="HZh-94-tVI"/>
+                                        <constraint firstItem="MNk-MZ-iEJ" firstAttribute="leading" secondItem="2wU-g6-o93" secondAttribute="leading" constant="20" symbolic="YES" id="JuY-UR-UuF"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="MNk-MZ-iEJ" secondAttribute="bottom" constant="1" id="grb-5E-Fiq"/>
                                         <constraint firstAttribute="trailing" secondItem="5u7-tA-ney" secondAttribute="trailing" constant="20" symbolic="YES" id="mFC-IL-wlj"/>
-                                        <constraint firstAttribute="bottom" secondItem="6JZ-PZ-pbm" secondAttribute="bottom" constant="11.5" id="muh-Op-0f8"/>
-                                        <constraint firstItem="5u7-tA-ney" firstAttribute="bottom" secondItem="6JZ-PZ-pbm" secondAttribute="bottom" id="ndC-7j-7fv"/>
+                                        <constraint firstItem="5u7-tA-ney" firstAttribute="leading" secondItem="2wU-g6-o93" secondAttribute="leadingMargin" constant="46" id="qTD-3a-PUF"/>
+                                        <constraint firstItem="5u7-tA-ney" firstAttribute="top" secondItem="2wU-g6-o93" secondAttribute="topMargin" id="ybh-n4-kQz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -57,11 +62,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TODO" id="FfK-wM-u6e">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="RKe-bD-Wuz">
-                            <connections>
-                                <action selector="editButtonDidTap:" destination="IIf-gx-q5D" id="Nvl-o7-Q5P"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="LwB-GU-GEo">
                             <connections>
                                 <segue destination="VIR-Bn-gMh" kind="showDetail" identifier="add" id="lha-ff-hgE"/>

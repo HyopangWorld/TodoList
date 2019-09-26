@@ -31,12 +31,12 @@ class TodoListViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         switch segue.identifier {
         case "detail":
-            guard let row = (sender as? Int) else {
+            guard let todo = (sender as? Todo) else {
                 return
             }
             
             let detailVC = segue.destination as! TodoDetailViewController
-            detailVC.todo = viewModel?.todoList[row]
+            detailVC.todo = todo
             detailVC.delegate = self
             
         case "add":
@@ -47,12 +47,14 @@ class TodoListViewController: UITableViewController {
         }
     }
     
-    
-    // MARK: - Edit Todo List
-    @IBAction func editButtonDidTap(_ sender: Any) {
+    @IBAction func checkMarkButtonDidTap(_ sender: UIButton) {
+        guard let todoList = viewModel?.todoList else {
+            return
+        }
         
+        sender.isSelected = !sender.isSelected
+        viewModel?.updateTodo(todo: todoList[sender.tag])
     }
-    
 }
 
 
@@ -77,9 +79,9 @@ extension TodoListViewController {
         }
         
         if let checkMark = cell.viewWithTag(2) {
-            if  checkMark is UILabel {
-                let value = todoList[row].isComplete ?? false ? 1 : 0
-                (checkMark as! UILabel).text = TodoComplete(rawValue: value)?.getIcon()
+            if  checkMark is UIButton {
+                checkMark.tag = row
+                (checkMark as! UIButton).isSelected = todoList[row].isComplete ?? false
             }
         }
         
@@ -88,7 +90,7 @@ extension TodoListViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "detail", sender: indexPath.row)
+        performSegue(withIdentifier: "detail", sender: viewModel?.todoList[indexPath.row])
     }
     
     // MARK: - cell 삭제
