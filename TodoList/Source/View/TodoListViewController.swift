@@ -64,18 +64,22 @@ extension TodoListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListItem", for: indexPath)
+        
         guard let todoList = viewModel?.todoList else {
             return cell
         }
         let row = indexPath.row
         
-        if let checkMark = cell.viewWithTag(0) {
-            checkMark.isHidden = todoList[row].isComplete ?? false
-        }
-        
         if let title = cell.viewWithTag(1) {
             if  title is UILabel {
                 (title as! UILabel).text = todoList[row].content ?? ""
+            }
+        }
+        
+        if let checkMark = cell.viewWithTag(2) {
+            if  checkMark is UILabel {
+                let value = todoList[row].isComplete ?? false ? 1 : 0
+                (checkMark as! UILabel).text = TodoComplete(rawValue: value)?.getIcon()
             }
         }
         
@@ -87,6 +91,15 @@ extension TodoListViewController {
         performSegue(withIdentifier: "detail", sender: indexPath.row)
     }
     
+    // MARK: - cell 삭제
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "삭제") { (delete, indexPath) in
+            self.viewModel?.delTodo(row: indexPath.row)
+        }
+        
+        return [delete]
+    }
 }
 
 extension TodoListViewController: TodoListDelegate {

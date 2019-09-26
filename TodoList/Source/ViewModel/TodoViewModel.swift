@@ -9,6 +9,8 @@
 import Foundation
 
 protocol TodoViewModelProtocol: class {
+    var isEdit: Bool { get set }
+    
     // 값 변환기
     var todoDidChange: ((TodoViewModelProtocol) -> ())? { get set }
     
@@ -16,6 +18,7 @@ protocol TodoViewModelProtocol: class {
     func reloadTodo()
     func setTodo(content: String)
     func updateTodo(todo: Todo)
+    func delTodo(row: Int)
 }
 
 class TodoViewModel: TodoViewModelProtocol {
@@ -24,15 +27,24 @@ class TodoViewModel: TodoViewModelProtocol {
             self.todoDidChange?(self)
         }
     }
+    var isEdit: Bool
+    
     
     var todoDidChange: ((TodoViewModelProtocol) -> ())?
     
     init() {
         self.todoList = []
+        self.isEdit = false
+    }
+    
+    func reloadTodo(){
+        if let todoList = DataService.getTodoList(key: "todoList") {
+            self.todoList = todoList
+        }
     }
     
     func setTodo(content: String){
-        DataService.setTodo(content: content)
+        DataService.addTodo(content: content)
         self.reloadTodo()
     }
     
@@ -41,9 +53,8 @@ class TodoViewModel: TodoViewModelProtocol {
         self.reloadTodo()
     }
     
-    func reloadTodo(){
-        if let todoList = DataService.getTodoList(key: "todoList") {
-            self.todoList = todoList
-        }
+    func delTodo(row: Int){
+        DataService.delTodo(id: todoList[row].id!)
+        self.reloadTodo()
     }
 }
