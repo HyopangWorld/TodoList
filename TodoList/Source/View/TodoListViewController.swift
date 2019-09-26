@@ -33,7 +33,6 @@ class TodoListViewController: UITableViewController {
         tableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: "TodoItem")
     }
     
-    // MARK: - Move View Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         switch segue.identifier {
         case "detail":
@@ -50,9 +49,9 @@ class TodoListViewController: UITableViewController {
             addVC.delegate = self
             
         default: break
+            
         }
     }
-    
 }
 
 
@@ -84,30 +83,35 @@ extension TodoListViewController {
         performSegue(withIdentifier: "detail", sender: viewModel?.todoList[indexPath.row])
     }
     
-    // MARK: - cell 삭제
+    
+    // MARK: - todo 삭제
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
         let delete = UITableViewRowAction(style: .destructive, title: "삭제") { (delete, indexPath) in
             self.viewModel?.delTodo(row: indexPath.row)
         }
         
         return [delete]
     }
-    
-    
 }
 
+
 extension TodoListViewController: TodoCellDelgate {
+    
+    // MARK: - todo 완료 상태 변경
     func checkMarkDidTap(tag: Int, isComplete: Bool) {
         viewModel?.completeTodo(row: tag, isComplete: isComplete)
     }
 }
 
+
 extension TodoListViewController: TodoListDelegate {
+    
+    // MARK: - todo 추가
     func setTodoList(content: String) {
-        viewModel?.setTodo(content: content)
+        viewModel?.addTodo(content: content)
     }
     
+    // MARK: - todo 업데이트
     func updateTodoList(todo: Todo) {
         viewModel?.updateTodo(todo: todo)
     }
