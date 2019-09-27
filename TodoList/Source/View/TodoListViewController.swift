@@ -52,6 +52,11 @@ class TodoListViewController: UITableViewController {
             
         }
     }
+    
+    @IBAction func switchValueChanged(_ sender: UISwitch) {
+        viewModel?.showCompleteTodo(isOn: sender.isOn)
+    }
+    
 }
 
 

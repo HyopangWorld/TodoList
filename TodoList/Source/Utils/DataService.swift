@@ -20,6 +20,7 @@ class DataService {
         self.todoList = todoList
     }
     
+    
     // MARK: - todo List 불러오기
     static func getTodoList(key: String) -> Array<Todo>? {
         var todoArray = Array<Todo>()
