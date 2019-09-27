@@ -17,11 +17,6 @@ protocol TodoViewModelProtocol: class {
     
     // 명령
     func reloadTodo()
-    func addTodo(content: String)
-    func updateTodo(todo: Todo)
-    func delTodo(row: Int)
-    func completeTodo(row: Int, isComplete: Bool)
-    func showCompleteTodo(isOn: Bool)
 }
 
 class TodoViewModel: TodoViewModelProtocol {
@@ -40,29 +35,25 @@ class TodoViewModel: TodoViewModelProtocol {
     }
     
     func reloadTodo(){
-        if let todoList = DataService.getTodoList(key: "todoList") {
-            self.todoList = todoList
-        }
-        
-        if !isOn {
+        guard let todoList = TodoService().getTodoList(key: "todoList") else {
             return
         }
         
-        self.todoList = self.todoList.filter({ $0.isComplete == false })
+        self.todoList = !isOn ? todoList : todoList.filter({ $0.isComplete == false })
     }
     
     func addTodo(content: String){
-        DataService.addTodo(content: content)
+        TodoService().addTodo(content: content)
         reloadTodo()
     }
     
     func updateTodo(todo: Todo){
-        DataService.updateTodo(todo: todo)
+        TodoService().updateTodo(todo: todo)
         reloadTodo()
     }
     
     func delTodo(row: Int){
-        DataService.delTodo(id: todoList[row].id!)
+        TodoService().delTodo(id: todoList[row].id!)
         reloadTodo()
     }
     

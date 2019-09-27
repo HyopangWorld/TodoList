@@ -13,60 +13,35 @@ class DataService {
     private static var id = 0
     
     static func getTodoList() -> Dictionary<String, Dictionary<String, Any>> {
-        return todoList
+        return self.todoList
     }
     
     static func setTodoList(_ todoList: Dictionary<String, Dictionary<String, Any>>){
         self.todoList = todoList
     }
     
+    static func getId() -> Int{
+        return self.id
+    }
     
-    // MARK: - todo List 불러오기
-    static func getTodoList(key: String) -> Array<Todo>? {
-        var todoArray = Array<Todo>()
-        
-        for data in todoList {
-            var todoData = data.value
-            var todo = Todo()
-            todo.id = data.key
-            todo.content = todoData["content"] as? String
-            todo.isComplete = todoData["isComplete"] as? Bool
-            
-            todoArray.append(todo)
+    static func setId(_ id: Int){
+        self.id = id
+    }
+    
+    
+    // MARK: - 데이터 저장
+    static func saveData(){
+        UserDefaults.standard.set(todoList, forKey: "todoList")
+    }
+    
+    
+    // MARK: - 데이터 불러오기
+    static func getData(){
+        if let todoList = UserDefaults.standard.dictionary(forKey: "todoList"){
+            if  todoList is [String : Dictionary<String, Any>] {
+                self.todoList = todoList as! [String : Dictionary<String, Any>]
+            }
         }
-        
-        // 배열 정렬
-        todoArray = todoArray.sorted(by: { ($0.id! as NSString).integerValue < ($1.id! as NSString).integerValue })
-        
-        return todoArray
     }
     
-    
-    // MARK: - todo 추가
-    static func addTodo(content: String) {
-        let todoDictionary = [
-            "content" : content,
-            "isComplete" : false
-            ] as [String : Any]
-        
-        todoList.updateValue(todoDictionary, forKey: "\(id)")
-        id += 1
-    }
-    
-    
-    // MARK: - todo 업데이트
-    static func updateTodo(todo: Todo){
-        let todoDictionary = [
-            "content" : todo.content ?? "",
-            "isComplete" : todo.isComplete ?? false
-            ] as [String : Any]
-        
-        todoList.updateValue(todoDictionary, forKey: todo.id!)
-    }
-    
-    
-    // MARK: - todo 삭제
-    static func delTodo(id: String){
-        todoList.removeValue(forKey: id)
-    }
 }

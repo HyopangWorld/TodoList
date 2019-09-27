@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Todo{
+struct Todo {
     var id: String?
     var content: String?
     var isComplete: Bool?
