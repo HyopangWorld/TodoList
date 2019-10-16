@@ -9,27 +9,27 @@ MVVM 패턴을 적용하여 리메이크한 간단한 todo앱입니다.
 
 1. todo 조회
 
-<img src="./content/inquiry.png" style="width:300px"/>
+<img src="./content/inquiry.png" width=350 />
 
 
 2. todo 추가 및 변경
 
-<img src="./content/add.png" style="width:300px"/>
+<img src="./content/add.png" width=350 />
 
 
 3. todo 삭제
 
-<img src="./content/del.png" style="width:300px"/>
+<img src="./content/del.png" width=350 />
 
 
 4. todo 완료
 
-<img src="./content/done.png" style="width:300px"/>
+<img src="./content/done.png" width=350 />
 
 
 5. 완료하지 않은 todo 목록만 보기
 
-<img src="./content/listType.png" style="width:300px"/>
+<img src="./content/listType.png" width=350 />
 
 <br>
 
